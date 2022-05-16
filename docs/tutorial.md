@@ -25,7 +25,7 @@ Now it's time to generate your Python package.
 Run the following command and feed with answers, If you don’t know what to enter, stick with the defaults:
 
 ```bash
-cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
+cookiecutter https://github.com/DarkDemiurg/cookiecutter-pypackage.git
 ```
 
 Finally, a new folder will be created under current folder, the name is the answer you
@@ -218,7 +218,7 @@ This will run the builtin development server for you to preview.
   result at [PyPI].
 
 
-[Edit this file]: https://github.com/waynerv/cookiecutter-pypackage/blob/master/docs/tutorial.md
+[Edit this file]: https://github.com/DarkDemiurg/cookiecutter-pypackage/blob/master/docs/tutorial.md
 [Codecov]: https://codecov.io/
 [PYPI]: https://pypi.org
 [GitHub]: https://github.com/

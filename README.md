@@ -3,10 +3,10 @@
 Cookiecutter template for a Python package, built with popular develop tools and
 conform to best practice.
 
-[![CI Status](https://github.com/waynerv/cookiecutter-pypackage/actions/workflows/dev.yml/badge.svg)](https://github.com/waynerv/cookiecutter-pypackage/actions/workflows/dev.yml)
+[![CI Status](https://github.com/DarkDemiurg/cookiecutter-pypackage/actions/workflows/dev.yml/badge.svg)](https://github.com/DarkDemiurg/cookiecutter-pypackage/actions/workflows/dev.yml)
 [![License](https://img.shields.io/pypi/l/ppw)](https://opensource.org/licenses/BSD-2-Clause)
 
-* Documentation: <https://waynerv.github.io/cookiecutter-pypackage>
+* Documentation: <https://DarkDemiurg.github.io/cookiecutter-pypackage>
 
 ## Features
 
@@ -41,7 +41,7 @@ pip install -U cookiecutter
 Generate a Python package project:
 
 ```
-cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
+cookiecutter https://github.com/DarkDemiurg/cookiecutter-pypackage.git
 ```
 
 Then follow **[Tutorial](docs/tutorial.md)** to finish other configurations.
