@@ -201,7 +201,7 @@ def test_docstrings_style(cookies):
 #
 #     # when:
 #     travis_setup_cmd = ('python travis_pypi_setup.py'
-#                         ' --repo audreyr/cookiecutter-pypackage'
+#                         ' --repo DarkDemiurg/cookiecutter-pypackage'
 #                         ' --password invalidpass')
 #     run_inside_dir(travis_setup_cmd, project_path)
 #

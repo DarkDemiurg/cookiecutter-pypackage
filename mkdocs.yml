@@ -1,5 +1,5 @@
 site_name: Cookiecutter Pypackage
-site_url: https://www.DarkDemiurg.com/cookiecutter-pypackage
+site_url: https://darkdemiurg.github.io/cookiecutter-pypackage
 repo_url: https://github.com/DarkDemiurg/cookiecutter-pypackage
 repo_name: DarkDemiurg/cookiecutter-pypackage
 nav:
@@ -46,4 +46,4 @@ extra:
       link: https://github.com/DarkDemiurg
       name: Github
     - icon: material/email
-      link: "mailto:ampedee@gmail.com"
+      link: "mailto:daefimov@gmail.com"
