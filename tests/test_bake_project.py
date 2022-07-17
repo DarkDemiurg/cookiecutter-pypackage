@@ -225,7 +225,7 @@ def test_bake_with_no_console_script(cookies, args):
     context, is_present = args
     result = cookies.bake(extra_context=context, template=str(Path(__file__).parent.parent.absolute()))
     project_path, project_slug, project_dir = project_info(result)
-    found_project_files = os.listdir(project_path)
+    found_project_files = os.listdir(project_dir)
     assert ("cli.py" in found_project_files) == is_present
 
     pyproject_path = os.path.join(project_path, _DEPENDENCY_FILE)
