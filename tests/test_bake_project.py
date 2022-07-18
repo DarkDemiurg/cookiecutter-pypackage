@@ -7,6 +7,7 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import List
 
+import py
 import pytest
 from cookiecutter.utils import rmtree
 
@@ -51,7 +52,7 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     try:
         yield result
     finally:
-        rmtree(str(result.project))
+        rmtree(str(result.project_path))
 
 
 def run_inside_dir(commands, dirpath):
@@ -96,14 +97,14 @@ def execute(command: List[str], dirpath: str, timeout=30, supress_warning=True):
 
 def test_year_compute_in_license_file(cookies):
     with bake_in_temp_dir(cookies) as result:
-        license_file_path = result.project.join('LICENSE')
+        license_file_path = result.project_path / 'LICENSE'
         now = datetime.datetime.now()
-        assert str(now.year) in license_file_path.read()
+        assert str(now.year) in py.path.local(license_file_path).read()
 
 
 def project_info(result):
     """Get toplevel dir, project_slug, and project dir from baked cookies"""
-    project_path = str(result.project)
+    project_path = str(result.project_path)
     project_slug = os.path.split(project_path)[-1]
     project_dir = os.path.join(project_path, project_slug.replace('-', '_'))
     return project_path, project_slug, project_dir
@@ -111,11 +112,11 @@ def project_info(result):
 
 def test_bake_with_defaults(cookies):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project.isdir()
+        assert py.path.local(result.project_path).isdir()
         assert result.exit_code == 0
         assert result.exception is None
 
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.basename for f in py.path.local(result.project_path).listdir()]
         assert _DEPENDENCY_FILE in found_toplevel_files
         assert 'python_boilerplate' in found_toplevel_files
         assert 'setup.cfg' in found_toplevel_files
@@ -132,9 +133,9 @@ def test_bake_without_author_file(cookies):
         cookies,
         extra_context={'create_author_file': 'n'}
     ) as result:
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.basename for f in py.path.local(result.project_path).listdir()]
         assert 'AUTHORS.md' not in found_toplevel_files
-        doc_files = [f.basename for f in result.project.join('docs').listdir()]
+        doc_files = [f.basename for f in py.path.local(result.project_path / 'docs').listdir()]
         assert 'authors.md' not in doc_files
 
         # make sure '-authors: authors.md' not appeared in mkdocs.yml
@@ -158,8 +159,8 @@ def test_bake_selecting_license(cookies, license_info):
         cookies,
         extra_context={'open_source_license': license}
     ) as result:
-        assert target_string in result.project.join('LICENSE').read()
-        assert license in result.project.join(_DEPENDENCY_FILE).read()
+        assert target_string in py.path.local(result.project_path / 'LICENSE').read()
+        assert license in py.path.local(result.project_path / _DEPENDENCY_FILE).read()
 
 
 def test_bake_not_open_source(cookies):
@@ -167,55 +168,20 @@ def test_bake_not_open_source(cookies):
         cookies,
         extra_context={'open_source_license': 'Not open source'}
     ) as result:
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.basename for f in py.path.local(result.project_path).listdir()]
         assert _DEPENDENCY_FILE in found_toplevel_files
         assert 'LICENSE' not in found_toplevel_files
-        assert 'License' not in result.project.join('README.md').read()
-        assert 'license' not in result.project.join(_DEPENDENCY_FILE).read()
-
-
-# def test_not_using_pytest(cookies):
-#     with bake_in_temp_dir(cookies, extra_context={'use_pytest': 'n'}) as result:
-#         assert result.project.isdir()
-#         # Test pyproject doesn't install pytest
-#         dep_file_path = result.project.join(_DEPENDENCY_FILE)
-#         lines = dep_file_path.readlines()
-#         assert "pytest = \"*\"\n" not in lines
-#         # Test contents of test file
-#         test_file_path = result.project.join('tests/test_python_boilerplate.py')
-#         lines = test_file_path.readlines()
-#         assert "import unittest" in ''.join(lines)
-#         assert "import pytest" not in ''.join(lines)
+        assert 'License' not in py.path.local(result.project_path / 'README.md').read()
+        assert 'license' not in py.path.local(result.project_path / _DEPENDENCY_FILE).read()
 
 
 def test_docstrings_style(cookies):
     with bake_in_temp_dir(cookies, extra_context={'docstrings_style': 'google'}) as result:
-        assert result.project.isdir()
+        assert py.path.local(result.project_path).isdir()
         # Test lint rule contains google style
-        flake8_conf_file_apth = result.project.join("setup.cfg")
+        flake8_conf_file_apth = py.path.local(result.project_path).join("setup.cfg")
         lines = flake8_conf_file_apth.readlines()
         assert "docstring-convention = google" in ''.join(lines)
-
-
-# def test_project_with_hyphen_in_module_name(cookies):
-#     result = cookies.bake(
-#         extra_context={'project_name': 'something-with-a-dash'}
-#     )
-#     assert result.project is not None
-#     project_path = str(result.project)
-#
-#     # when:
-#     travis_setup_cmd = ('python travis_pypi_setup.py'
-#                         ' --repo DarkDemiurg/cookiecutter-pypackage'
-#                         ' --password invalidpass')
-#     run_inside_dir(travis_setup_cmd, project_path)
-#
-#     # then:
-#     result_travis_config = yaml.load(
-#         open(os.path.join(project_path, ".travis.yml"))
-#     )
-#     assert "secure" in result_travis_config["deploy"]["password"],\
-#         "missing password config in .travis.yml"
 
 
 @pytest.mark.parametrize("args", [
