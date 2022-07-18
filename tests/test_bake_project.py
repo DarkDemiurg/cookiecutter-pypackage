@@ -46,10 +46,7 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     :param cookies: pytest_cookies.Cookies,
         cookie to be baked and its temporal files will be removed
     """
-    if sys.platform == "win32":
-        result = cookies.bake(*args, **kwargs)
-    else:
-        result = cookies.bake(*args, **kwargs, template=str(Path(__file__).parent.parent.absolute()))
+    result = cookies.bake(*args, **kwargs, template=str(Path(__file__).parent.parent.absolute()))
 
     try:
         yield result
