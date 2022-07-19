@@ -1,5 +1,11 @@
 # History
 
+## v1.2.0
+
+* Python version limited to 3.8-3.9
+* Tests refactoring
+* Update dependencies to latest versions
+
 ## v1.1.1
 
 * Centralize most of the tool configuration in the `setup.cfg` file
