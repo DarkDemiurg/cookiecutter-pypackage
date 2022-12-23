@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://darkdemiurg.github.io/cookiecutter-pypackage/</loc>
-         <lastmod>2022-10-11</lastmod>
+         <lastmod>2022-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darkdemiurg.github.io/cookiecutter-pypackage/console_script_setup/</loc>
-         <lastmod>2022-10-11</lastmod>
+         <lastmod>2022-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darkdemiurg.github.io/cookiecutter-pypackage/faq/</loc>
-         <lastmod>2022-10-11</lastmod>
+         <lastmod>2022-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darkdemiurg.github.io/cookiecutter-pypackage/history/</loc>
-         <lastmod>2022-10-11</lastmod>
+         <lastmod>2022-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darkdemiurg.github.io/cookiecutter-pypackage/pypi_release_checklist/</loc>
-         <lastmod>2022-10-11</lastmod>
+         <lastmod>2022-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darkdemiurg.github.io/cookiecutter-pypackage/tutorial/</loc>
-         <lastmod>2022-10-11</lastmod>
+         <lastmod>2022-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
