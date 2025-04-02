@@ -49,9 +49,6 @@ plugins:
   - include-markdown
   - search:
       lang: en
-  - mkdocstrings:
-      watch:
-        - {{ cookiecutter.project_slug }}
 extra:
   social:
     - icon: fontawesome/brands/twitter

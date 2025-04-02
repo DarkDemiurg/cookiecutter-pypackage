@@ -6,12 +6,14 @@ test: format lint unittest
 format:
 	isort $(sources) tests
 	black $(sources) tests
+	ruff format $(sources) tests
 
 lint:
 	flake8 $(sources) tests
 	{%- if cookiecutter.use_mypy == 'y' %}
 	mypy $(sources) tests
 	{%- endif %}
+	ruff check --fix $(sources) tests
 
 unittest:
 	pytest
